@@ -21,9 +21,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-
-        GetComponent<LineRenderer>().SetPosition(0, _initialPosition);
-        GetComponent<LineRenderer>().SetPosition(1, transform.position);
+        
+        GetComponent<LineRenderer>().SetPosition(0, transform.position);
+        GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
 
         float v = GetComponent<Rigidbody2D>().velocity.magnitude;
 
