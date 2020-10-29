@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Hero
+  - Obstruction
   layers:
   - Default
   - TransparentFX
