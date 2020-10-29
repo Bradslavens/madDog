@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
-        
+
         GetComponent<LineRenderer>().SetPosition(0, transform.position);
         GetComponent<LineRenderer>().SetPosition(1, _initialPosition);
 
@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
                 _timeSittingAround += Time.deltaTime;
             }
             
-        if( transform.position.y > 5  || 
-            transform.position.x < -19 || 
-            transform.position.x > 19 ||
+        if( transform.position.y > 7  || 
+            transform.position.x < -25 || 
+            transform.position.x > 20 ||
             _timeSittingAround > 1){
 
             string currentScene = SceneManager.GetActiveScene().name;
