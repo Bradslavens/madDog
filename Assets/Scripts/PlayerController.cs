@@ -6,23 +6,25 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-    Vector3 initialPosition;
-    Rigidbody2D playerRB;
-    LineRenderer lineRenderer;
+    Vector3 _initialPosition;
+    Rigidbody2D _playerRB;
+    LineRenderer _lineRenderer;
 
     [SerializeField] float velocity;
 
     private void Awake() {
-        playerRB = gameObject.GetComponent<Rigidbody2D>();
-        
-        initialPosition = transform.position;
-        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        _playerRB = gameObject.GetComponent<Rigidbody2D>();
+
+        _initialPosition = transform.position;
+        _lineRenderer = gameObject.GetComponent<_LineRenderer>();
     }
 
     private void Update() {
-        if(transform.position.y > 5  || transform.position.x < -19 || transform.position.x > 19){
-            string currentScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentScene);
+        if( transform.position.y > 5  || 
+            transform.position.x < -19 || 
+            transform.position.x > 19){
+
+            ReloadScene();
         }
     }
 
@@ -38,10 +40,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnMouseUp() {
         
-        Vector2 direction = initialPosition - transform.position;
+        Vector2 direction = _initialPosition - transform.position;
 
-        playerRB.AddForce(direction * velocity);
+        _playerRB.AddForce(direction * velocity);
         
-        playerRB.gravityScale = 1;
+        _playerRB.gravityScale = 1;
+    }
+
+    private void ReloadScene(){
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
     }
 }
