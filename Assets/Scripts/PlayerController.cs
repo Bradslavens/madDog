@@ -6,25 +6,37 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
-    Vector3 _initialPosition;
-    Rigidbody2D _playerRB;
-    LineRenderer _lineRenderer;
+    private Vector3 _initialPosition;
+    private Rigidbody2D _playerRB;
+    private LineRenderer _lineRenderer;    
+    private float _timeSittingAround;    
+    private bool _isLaunched;
 
-    [SerializeField] float velocity;
+    [SerializeField] private float _velocity;
 
     private void Awake() {
         _playerRB = gameObject.GetComponent<Rigidbody2D>();
 
         _initialPosition = transform.position;
-        _lineRenderer = gameObject.GetComponent<_LineRenderer>();
+        // _lineRenderer = gameObject.GetComponent<_LineRenderer>();
     }
 
     private void Update() {
+
+        float v = GetComponent<Rigidbody2D>().velocity.magnitude;
+
+        if( _isLaunched && 
+            v <= 0.1){
+                _timeSittingAround += Time.deltaTime;
+            }
+            
         if( transform.position.y > 5  || 
             transform.position.x < -19 || 
-            transform.position.x > 19){
+            transform.position.x > 19 ||
+            _timeSittingAround > 1){
 
-            ReloadScene();
+            string currentScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentScene);
         }
     }
 
@@ -42,13 +54,11 @@ public class PlayerController : MonoBehaviour
         
         Vector2 direction = _initialPosition - transform.position;
 
-        _playerRB.AddForce(direction * velocity);
+        _playerRB.AddForce(direction * _velocity);
         
         _playerRB.gravityScale = 1;
+
+        _isLaunched = true;
     }
 
-    private void ReloadScene(){
-        string currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene);
-    }
 }
