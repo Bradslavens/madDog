@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-
     private Vector3 _initialPosition;
     private Rigidbody2D _playerRB;
     private LineRenderer _lineRenderer;    
@@ -22,6 +21,9 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Update() {
+
+        GetComponent<LineRenderer>().SetPosition(0, _initialPosition);
+        GetComponent<LineRenderer>().SetPosition(1, transform.position);
 
         float v = GetComponent<Rigidbody2D>().velocity.magnitude;
 
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
         _playerRB.gravityScale = 1;
 
         _isLaunched = true;
+
+        GetComponent<LineRenderer>().enabled = false;
     }
 
 }
