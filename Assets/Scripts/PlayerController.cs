@@ -1,28 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
 
     Vector3 initialPosition;
     Rigidbody2D playerRB;
+    LineRenderer lineRenderer;
 
     [SerializeField] float velocity;
 
     private void Awake() {
-        initialPosition = transform.position;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
         playerRB = gameObject.GetComponent<Rigidbody2D>();
+        
+        initialPosition = transform.position;
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        if(transform.position.y > 5  || transform.position.x < -19 || transform.position.x > 19){
+            string currentScene = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentScene);
+        }
     }
 
     private void OnMouseDrag() {
