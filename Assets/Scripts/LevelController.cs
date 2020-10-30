@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     private Enemy[] _enemies;
-    private static int _nextLevelIndex = 1;
+    private static int _nextLevelIndex = 2;
     
     private void OnEnable() {
         _enemies = FindObjectsOfType<Enemy>();
