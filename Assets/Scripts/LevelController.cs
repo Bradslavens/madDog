@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    private DestroyEnemy[] _enemies;
+    private Enemy[] _enemies;
     private static int _nextLevelIndex = 1;
     
     private void OnEnable() {
-        _enemies = FindObjectsOfType<DestroyEnemy>();
+        _enemies = FindObjectsOfType<Enemy>();
     }
     // Update is called once per frame
     void Update()
     {
-        foreach(DestroyEnemy enemy in _enemies){
+        foreach(Enemy enemy in _enemies){
             if( enemy != null){
                 return;
             }

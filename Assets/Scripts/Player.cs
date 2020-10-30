@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float _timeSittingAround;    
     private bool _isLaunched;
 
-    [SerializeField] private float _velocity;
+    [SerializeField] private float _velocity = 300;
 
     private void Awake() {
         _playerRB = gameObject.GetComponent<Rigidbody2D>();
