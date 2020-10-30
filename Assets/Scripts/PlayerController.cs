@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
         _playerRB = gameObject.GetComponent<Rigidbody2D>();
 
         _initialPosition = transform.position;
-        // _lineRenderer = gameObject.GetComponent<_LineRenderer>();
     }
 
     private void Update() {
@@ -36,9 +35,12 @@ public class PlayerController : MonoBehaviour
             transform.position.x < -25 || 
             transform.position.x > 20 ||
             _timeSittingAround > 1){
-
-            string currentScene = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentScene);
+                
+            transform.position = _initialPosition;
+            _timeSittingAround = 0;
+            _isLaunched = false;
+            
+            // SceneManager.LoadScene("Scene1");
         }
     }
 
