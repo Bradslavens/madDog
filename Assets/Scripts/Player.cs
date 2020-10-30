@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private Vector3 _initialPosition;
     private Rigidbody2D _playerRB;
@@ -31,16 +31,19 @@ public class PlayerController : MonoBehaviour
                 _timeSittingAround += Time.deltaTime;
             }
             
-        if( transform.position.y > 7  || 
+        if( 
+            transform.position.y > 7  || 
+            transform.position.y < -4 ||
             transform.position.x < -25 || 
             transform.position.x > 20 ||
             _timeSittingAround > 1){
-                
-            transform.position = _initialPosition;
-            _timeSittingAround = 0;
-            _isLaunched = false;
+
+        
+            Destroy(gameObject);
             
-            // SceneManager.LoadScene("Scene1");
+            // transform.position = _initialPosition;
+            // _timeSittingAround = 0;
+            // _isLaunched = false;
         }
     }
 
