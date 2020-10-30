@@ -55,6 +55,10 @@ public class Player : MonoBehaviour
 
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        newPosition.x = Mathf.Clamp(newPosition.x, -19.0f, -13.0f );
+
+        newPosition.y = Mathf.Clamp(newPosition.y, -4.0f, 4.0f);
+
         newPosition.z = 0;
 
         transform.position= newPosition;
