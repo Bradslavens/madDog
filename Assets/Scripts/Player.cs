@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private LineRenderer _lineRenderer;    
     private float _timeSittingAround;    
     private bool _isLaunched;
+    private Rigidbody2D _rigidbody;
 
     [SerializeField] private float _velocity = 300;
 
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
         _playerRB = gameObject.GetComponent<Rigidbody2D>();
 
         _initialPosition = transform.position;
+        
+        _rigidbody =  _playerRB.GetComponent<Rigidbody2D>();
     }
 
     private void Update() {
@@ -38,12 +41,13 @@ public class Player : MonoBehaviour
             transform.position.x > 20 ||
             _timeSittingAround > 1){
 
-        
-            Destroy(gameObject);
-
-            // transform.position = _initialPosition;
-            // _timeSittingAround = 0;
-            // _isLaunched = false;
+            // reset player
+            transform.position = _initialPosition;
+            _timeSittingAround = 0;
+            _isLaunched = false;
+            _playerRB.gravityScale = 0;
+            GetComponent<LineRenderer>().enabled = true;
+            _playerRB.GetComponent<Transform>().rotation = Quaternion.identity;
         }
     }
 
