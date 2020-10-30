@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
         // }
 
         string destroyerName = other.collider.gameObject.tag;
-        bool killShot = other.contacts[0].normal.y < -0.5;
+        // bool killShot = other.contacts[0].normal.y < -0.5;
+        bool killShot = true;
 
         if((destroyerName == "Hero" || destroyerName == "Obstruction") && killShot ){
             Destroy(gameObject);

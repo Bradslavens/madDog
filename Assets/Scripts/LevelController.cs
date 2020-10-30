@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     private Enemy[] _enemies;
-    private static int _nextLevelIndex = 2;
+    private static int _nextLevelIndex = 1;
     
     private void OnEnable() {
         _enemies = FindObjectsOfType<Enemy>();
@@ -19,11 +19,16 @@ public class LevelController : MonoBehaviour
                 return;
             }
         }
+        
+        if(_nextLevelIndex <2 ){
+            _nextLevelIndex++;
+        }
+        else{
+            _nextLevelIndex = 1;
+        }
 
         string nextLevelName = "Scene" + _nextLevelIndex;
         
         SceneManager.LoadScene(nextLevelName);
-        
-        _nextLevelIndex++;
     }
 }
