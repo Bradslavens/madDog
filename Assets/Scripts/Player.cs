@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
         
             Destroy(gameObject);
-            
+
             // transform.position = _initialPosition;
             // _timeSittingAround = 0;
             // _isLaunched = false;
